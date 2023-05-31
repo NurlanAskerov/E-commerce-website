@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Products from "./components/Products"
-import Card from "./components/card"
+import Card from "./components/Card"
 import CardContext from "./useContext/CardContext"
 
 function App() {
