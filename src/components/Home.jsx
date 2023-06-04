@@ -1,6 +1,6 @@
 import React from "react";
 import Products from "./Products";
-
+import heroImage from "../../public/DrawKit-Vector-Illustration-ecommerce-01.svg"
 const Home = () => {
    return(    <><div className="w-full h-[100vh] pt-10 mt-14 ">
       <section>
@@ -13,7 +13,7 @@ const Home = () => {
             </div>
             <img
               className=" mx-auto  w-full lg:w-1/2"
-              src="../public/DrawKit-Vector-Illustration-ecommerce-02.png"
+              src={heroImage}
             />
           </div>
         </div>
