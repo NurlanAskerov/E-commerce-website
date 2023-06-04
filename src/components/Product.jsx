@@ -1,36 +1,40 @@
 import React, { useContext, useState } from "react";
 import CardContext from "../useContext/CardContext";
+import { Link } from "react-router-dom";
+import AddToCart from "./AddToCart";
+import { ToastContainer } from 'react-toastify';
 
 const Product = ({ product }) => {
-  const { setCardItems, cardItems ,total,setTotal} = useContext(CardContext);
-  const handleAdd = (product) => {
-    const exsistingItem = cardItems.find((item) => item.id === product.id)
-    if (exsistingItem) {
-         const updatedItems=cardItems.map(product=>product.id===exsistingItem.id ? {...product,quantity:product.quantity+1} : product)
-        setCardItems(updatedItems);
-  
-    } else {
-  
-        setCardItems([...cardItems, { ...product, quantity: 1 }]);
-  
-    }
-    setTotal(total+product.price)
-
-  
-};
+  const { setCardItems, cardItems, total, setTotal } = useContext(CardContext);
   return (
-    <div className=" w-1/4  px-10 py-5 mx-5 m-2 bg-gray-200">
-      <img className="w-25 m-2 mx-auto  h-25" src={product.image}/>
-      <h1 className="font-bold">
-        {product.title}
-      </h1>
-      <button
-        onClick={() => handleAdd(product)}
-        className="bg-blue-600 hover:bg-blue-700 rounded px-2 py-1 text-white"
-      >
-        Add
-      </button><span className="bg-white rounded p-2 m-2">{product.price}$</span>
-    </div>
+    <>
+      <div className="m-2 border overflow-hidden p-3 rounded bg-white">
+        <div className="p-2 md:h-[300px] md:w-[300px] w-full flex justify-center items-center">
+        <Link to={`products/${product.id}`}>
+          <img
+            className="max-h-[160px] hover:scale-110 transition-all"
+            src={product.image}
+          /></Link>
+        </div>
+        <div className="w-[300px] min-w-[230px] p-1">
+          <h4 className="font-light text-sm opacity-60">{product.category}</h4>
+          <h2 className="font-bold hover:z-10">{product.title}</h2>
+          <h3>{product.price} $</h3>
+          <div className="flex justify-between">
+          <ToastContainer/>
+            <button
+              className="border-2 border-black m-2 hover:bg-black hover:text-white p-1 px-3 "
+              onClick={(e) => AddToCart(product,setCardItems, cardItems, total, setTotal)}
+            >
+            Add
+            </button>
+            <Link to={`products/${product.id}`} className="p-1 px-3 m-2 mt-3 border-2 rounded text-white border-amber-500 hover:bg-white hover:text-amber-500 bg-amber-500">
+              View
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

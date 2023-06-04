@@ -1,23 +1,37 @@
-import { useState } from "react"
-import Products from "./components/Products"
-import Card from "./components/card"
-import CardContext from "./useContext/CardContext"
-
+import React, { useState } from "react";
+import Card from "./components/Card";
+import CardContext from "./useContext/CardContext";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer";
+import ProductDetail from "./components/ProductDetail";
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
-  const [cardItems,setCardItems]=useState([])
-  const [total,setTotal]=useState(0)
-  const value={
-    cardItems,setCardItems,total,setTotal
-  }
+  const [cardItems, setCardItems] = useState([]);
+  const [total, setTotal] = useState(0);
+  const value = {
+    cardItems,
+    setCardItems,
+    total,
+    setTotal,
+  };
+
   return (
-    <CardContext.Provider value={value}>
-    <div>
-     <Card/>
-     <hr className="text-bold"/>
-     <Products/>
+    <div className=" overflow-hidden">
+      <Router>
+        <CardContext.Provider value={value}>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/card" element={<Card />} />
+            <Route path="/products/:productId" element={<ProductDetail />} />
+          </Routes>
+          <Footer />
+        </CardContext.Provider>
+      </Router>
     </div>
-    </CardContext.Provider>
-  )
+  );
 }
 
-export default App
+export default App;
