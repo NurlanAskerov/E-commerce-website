@@ -19,7 +19,7 @@ const ProductDetail = () => {
   }, [productId]);
 
   return (
-    <div className="mt-36 m-20">
+    <div className="mt-36 sm:m-20 m-2">
       <ToastContainer/>
       {isLoading ? (
         <div className="w-full h-[100vh] flex justify-center items-center text-2xl font-bold">
