@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import fetchApi from './fetchApi';
 import AddToCart from './AddToCart';
 import CardContext from '../useContext/CardContext';
+import { ToastContainer } from 'react-toastify';
 
 const ProductDetail = () => {
   const [product, setProduct] = useState({});
@@ -19,6 +20,7 @@ const ProductDetail = () => {
 
   return (
     <div className="mt-36 m-20">
+      <ToastContainer/>
       {isLoading ? (
         <div className="w-full h-[100vh] flex justify-center items-center text-2xl font-bold">
           Loading...
